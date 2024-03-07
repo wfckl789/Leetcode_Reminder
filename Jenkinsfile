@@ -1,10 +1,24 @@
 pipeline {
     agent any
+
     stages {
-        stage('build') {
+        stage('Checkout') {
             steps {
-                echo 'Hello World'
+                git 'https://github.com/wfckl789/Leetcode_Reminder.git'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'mvn test'
             }
         }
     }
 }
+
