@@ -1,22 +1,23 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout') {
+    stage('hello') {
       steps {
-        git 'https://github.com/wfckl789/Leetcode_Reminder.git'
+        echo 'hello'
       }
     }
 
     stage('Build') {
+      when {
+        branch "main"
+      }
       steps {
-        git 'https://github.com/wfckl789/Leetcode_Reminder.git'
         sh 'mvn clean package'
       }
     }
 
     stage('Test') {
       steps {
-        git 'https://github.com/wfckl789/Leetcode_Reminder.git'
         sh 'mvn test'
       }
     }
